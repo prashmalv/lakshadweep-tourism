@@ -7,7 +7,7 @@ import { destinations, useApp } from '../context/AppContext'
 import { useT } from '../i18n'
 
 const HERO_ISLANDS = [
-  { name: 'Agatti', tagline: 'The Gateway Lagoon', emoji: '🏝️', visitors: '2,140', color: '#0E9AAB', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Agatti_Island%2C_Lakshadweep.jpg/1200px-Agatti_Island%2C_Lakshadweep.jpg' },
+  { name: 'Agatti', tagline: 'The Gateway Lagoon', emoji: '🏝️', visitors: '2,140', color: '#0E9AAB', img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=82' },
   { name: 'Bangaram', tagline: 'The Teardrop Atoll', emoji: '🐚', visitors: '1,320', color: '#0C5FA8', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=82' },
   { name: 'Kavaratti', tagline: 'The Capital Isle', emoji: '🕌', visitors: '1,880', color: '#0A6E7C', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=82' },
   { name: 'Minicoy', tagline: 'The Lighthouse Island', emoji: '🗼', visitors: '960', color: '#F0654A', img: 'https://images.unsplash.com/photo-1590523278191-995cbcda646b?auto=format&fit=crop&w=1200&q=82' },
@@ -15,7 +15,7 @@ const HERO_ISLANDS = [
 ]
 
 const ISLAND_GRID = [
-  { name: 'Agatti', tagline: 'The Gateway Lagoon', emoji: '🏝️', bg: '#E4F5F6', color: '#0E9AAB', img: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Agatti_Island%2C_Lakshadweep.jpg/1200px-Agatti_Island%2C_Lakshadweep.jpg', dest: 1 },
+  { name: 'Agatti', tagline: 'The Gateway Lagoon', emoji: '🏝️', bg: '#E4F5F6', color: '#0E9AAB', img: 'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=82', dest: 1 },
   { name: 'Bangaram', tagline: 'The Teardrop Atoll', emoji: '🐚', bg: '#E1ECF7', color: '#0C5FA8', img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=82', dest: 2 },
   { name: 'Kavaratti', tagline: 'Capital of Lakshadweep', emoji: '🕌', bg: '#D6F3F5', color: '#0A6E7C', img: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=82', dest: 3 },
   { name: 'Minicoy', tagline: 'The Lighthouse Island', emoji: '🗼', bg: '#FCEAE2', color: '#E85D3D', img: 'https://images.unsplash.com/photo-1590523278191-995cbcda646b?auto=format&fit=crop&w=800&q=82', dest: 4 },

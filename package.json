@@ -1,0 +1,27 @@
+{
+  "name": "lakshadweep-tourism-app",
+  "version": "1.0.0",
+  "description": "Lakshadweep Tourism Mobile Application - UT of Lakshadweep",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node server.js",
+    "start:prod": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "express": "^4.22.2",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}

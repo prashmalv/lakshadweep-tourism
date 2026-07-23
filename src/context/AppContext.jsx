@@ -4,7 +4,7 @@ const AppContext = createContext(null)
 
 // Representative imagery for Lakshadweep islands & lagoons (public sources)
 const imgs = {
-  agatti:    'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6a/Agatti_Island%2C_Lakshadweep.jpg/1200px-Agatti_Island%2C_Lakshadweep.jpg',
+  agatti:    'https://images.unsplash.com/photo-1573843981267-be1999ff37cd?auto=format&fit=crop&w=1200&q=82',
   bangaram:  'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=82',
   kavaratti: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=82',
   minicoy:   'https://images.unsplash.com/photo-1590523278191-995cbcda646b?auto=format&fit=crop&w=1200&q=82',

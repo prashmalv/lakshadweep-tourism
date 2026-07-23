@@ -1,8 +1,7 @@
-name: Deploy to Azure VM
+name: Deploy Lakshadweep to Azure VM
 
-# Triggers on every push to main, or manually via Actions tab.
-# Runs an SSH script on the Azure VM that pulls latest code, builds, and
-# zero-downtime reloads PM2.
+# Triggers on push to main or manual dispatch.
+# SSH into the VM, pulls latest, builds, zero-downtime reload PM2.
 
 on:
   push:
@@ -10,8 +9,8 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: deploy-azure-vm
-  cancel-in-progress: false      # don't kill an in-progress prod deploy
+  group: deploy-azure-vm-lakshadweep
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -26,34 +25,39 @@ jobs:
           SSH_USER: ${{ secrets.AZURE_VM_USER }}
         run: |
           set -euo pipefail
-
-          # Write SSH key (mode 600)
           mkdir -p ~/.ssh
           printf '%s\n' "$SSH_KEY" > ~/.ssh/deploy_key
           chmod 600 ~/.ssh/deploy_key
-
-          # Trust the host on first connect
           ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts 2>/dev/null
 
           ssh -i ~/.ssh/deploy_key "$SSH_USER@$SSH_HOST" bash -s <<'REMOTE'
           set -e
-          cd /home/egovai/rjtrav
+          cd /home/egovai/lakshadweep
 
-          echo "→ git pull"
-          git fetch --depth 1 origin main
-          git reset --hard origin/main
+          # First-time bootstrap: if no .git yet, clone; otherwise pull
+          if [ ! -d .git ]; then
+            cd /home/egovai
+            [ -d lakshadweep ] && mv lakshadweep lakshadweep.old
+            git clone --depth 1 https://github.com/prashmalv/lakshadweep-tourism.git lakshadweep
+            [ -d lakshadweep.old/node_modules ] && mv lakshadweep.old/node_modules lakshadweep/ || true
+            rm -rf lakshadweep.old
+            cd lakshadweep
+          else
+            git fetch --depth 1 origin main
+            git reset --hard origin/main
+          fi
 
-          echo "→ npm install (production deps)"
+          echo "→ npm install"
           npm install --silent
 
           echo "→ build"
           npm run build
 
-          echo "→ reload PM2 (zero downtime)"
-          # Make sure env vars from /etc/environment are picked up
+          echo "→ pm2 reload"
           source /etc/environment
           export ANTHROPIC_API_KEY
-          pm2 reload lakshadweep-tourism --update-env
+          pm2 reload lakshadweep --update-env || pm2 start ecosystem.config.cjs --update-env
+          pm2 save --force >/dev/null
 
           echo "→ health check"
           sleep 2
